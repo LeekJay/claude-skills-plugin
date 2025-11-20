@@ -60,7 +60,7 @@ This is a **strict, non-negotiable requirement**. All of the following are **FOR
 - ❌ Any AI-related emojis (🤖, 🚀 when combined with AI references)
 - ❌ Any mention of AI assistance in commit message body or footer
 - ❌ Any URL to Claude Code or AI tool websites
-- ❌ Any "Powered by", "Made with", "Assisted by" followed by AI tool names
+- ❌ Any "Powered by", "Made with", "Assisted by", "Co-Authored-By" followed by AI tool names
 
 **Why this matters:**
 - Commit messages should describe the **what** and **why** of changes, not the **how** they were created
