@@ -1,12 +1,12 @@
-# Development Best Practices Plugin for Claude Code
+# Development Best Practices Plugins for Claude Code
 
 [中文文档](./README_CN.md)
 
-A comprehensive collection of development best practices as agent skills for Claude Code, including Git conventions, code quality standards, documentation guidelines, and frontend architecture design.
+A curated marketplace of development best practices as independent agent skills for Claude Code. Each skill is available as a separate plugin, allowing you to install only what you need.
 
-## 📦 What's Included
+## 📦 Available Plugins
 
-This plugin provides 7 essential skills that help Claude understand and enforce development best practices:
+This marketplace provides 7 independent plugins that help Claude understand and enforce development best practices:
 
 ### 1. **Git Commit Conventions** (`git-commit-conventions`)
 Standardize Git commit message format using Conventional Commits with Chinese subjects.
@@ -112,9 +112,24 @@ Review and redesign frontend project architecture.
 /plugin marketplace add LeekJay/claude-skills-plugin
 ```
 
-2. **Install the plugin:**
+2. **Install individual plugins:**
+
+Install all plugins:
 ```shell
-/plugin install development-best-practices@LeekJay
+/plugin install code-quality-standards@LeekJay
+/plugin install documentation-guidelines@LeekJay
+/plugin install frontend-architecture-design@LeekJay
+/plugin install git-commit-conventions@LeekJay
+/plugin install git-operations-safety@LeekJay
+/plugin install language-preferences@LeekJay
+/plugin install pull-request-guidelines@LeekJay
+```
+
+Or install only what you need:
+```shell
+# Example: Install only git-related plugins
+/plugin install git-commit-conventions@LeekJay
+/plugin install git-operations-safety@LeekJay
 ```
 
 3. **Restart Claude Code** to activate the skills
@@ -135,12 +150,14 @@ cd claude-skills-plugin
 
 2. **Add as local marketplace:**
 ```shell
-/plugin marketplace add ./claude-skills-plugin
+/plugin marketplace add ./
 ```
 
-3. **Install the plugin:**
+3. **Install plugins:**
 ```shell
-/plugin install development-best-practices@local
+/plugin install code-quality-standards@local
+/plugin install git-commit-conventions@local
+# ... install other plugins as needed
 ```
 
 ## 📖 Usage
@@ -179,22 +196,36 @@ git add .
 ```
 claude-skills-plugin/
 ├── .claude-plugin/
-│   ├── plugin.json              # Plugin metadata
+│   ├── plugin.json              # Root plugin metadata (deprecated)
 │   └── marketplace.json         # Marketplace configuration
-├── skills/                       # All agent skills
+├── skills/                       # All agent skills (now individual plugins)
 │   ├── git-commit-conventions/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
 │   │   └── SKILL.md
 │   ├── pull-request-guidelines/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
 │   │   └── SKILL.md
 │   ├── code-quality-standards/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
 │   │   └── SKILL.md
 │   ├── language-preferences/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
 │   │   └── SKILL.md
 │   ├── documentation-guidelines/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
 │   │   └── SKILL.md
 │   ├── git-operations-safety/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
 │   │   └── SKILL.md
 │   └── frontend-architecture-design/
+│       ├── .claude-plugin/
+│       │   └── plugin.json
 │       ├── SKILL.md
 │       ├── PERFORMANCE.md
 │       ├── MAINTAINABILITY.md
@@ -212,7 +243,7 @@ You can customize these skills for your team:
 
 1. Fork this repository
 2. Modify the skill files in the `skills/` directory to match your team's standards
-3. Update the `plugin.json` with your information
+3. Update the individual `plugin.json` files with your information
 4. Share with your team via your own marketplace
 
 ## 🤝 Contributing

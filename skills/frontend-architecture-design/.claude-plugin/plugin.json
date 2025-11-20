@@ -1,0 +1,21 @@
+{
+  "name": "frontend-architecture-design",
+  "description": "Review and redesign frontend project architecture, analyzing performance, maintainability, scalability, engineering, and type safety. Supports React, Vue, and other tech stacks.",
+  "version": "1.0.0",
+  "author": {
+    "name": "LeekJay",
+    "email": "leekjay@foxmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LeekJay/claude-skills-plugin"
+  },
+  "keywords": [
+    "architecture",
+    "frontend",
+    "react",
+    "vue",
+    "performance",
+    "typescript"
+  ]
+}

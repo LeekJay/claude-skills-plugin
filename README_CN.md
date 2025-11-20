@@ -1,12 +1,12 @@
-# Claude Code 开发最佳实践插件
+# Claude Code 开发最佳实践插件集
 
 [English](./README.md)
 
-一个为 Claude Code 提供的开发最佳实践代理技能集合，包括 Git 规范、代码质量标准、文档指南和前端架构设计。
+一个为 Claude Code 提供的开发最佳实践代理技能市场。每个技能都作为独立插件提供，你可以只安装需要的部分。
 
-## 📦 包含内容
+## 📦 可用插件
 
-本插件提供 7 个核心技能，帮助 Claude 理解并执行开发最佳实践：
+本市场提供 7 个独立插件，帮助 Claude 理解并执行开发最佳实践：
 
 ### 1. **Git 提交规范** (`git-commit-conventions`)
 使用 Conventional Commits 格式标准化 Git 提交信息，使用中文主题。
@@ -112,9 +112,24 @@ Git 操作安全标准。
 /plugin marketplace add LeekJay/claude-skills-plugin
 ```
 
-2. **安装插件：**
+2. **安装独立插件：**
+
+安装所有插件：
 ```shell
-/plugin install development-best-practices@LeekJay
+/plugin install code-quality-standards@LeekJay
+/plugin install documentation-guidelines@LeekJay
+/plugin install frontend-architecture-design@LeekJay
+/plugin install git-commit-conventions@LeekJay
+/plugin install git-operations-safety@LeekJay
+/plugin install language-preferences@LeekJay
+/plugin install pull-request-guidelines@LeekJay
+```
+
+或只安装你需要的：
+```shell
+# 示例：只安装 git 相关插件
+/plugin install git-commit-conventions@LeekJay
+/plugin install git-operations-safety@LeekJay
 ```
 
 3. **重启 Claude Code** 以激活技能
@@ -135,12 +150,14 @@ cd claude-skills-plugin
 
 2. **添加为本地市场：**
 ```shell
-/plugin marketplace add ./claude-skills-plugin
+/plugin marketplace add ./
 ```
 
 3. **安装插件：**
 ```shell
-/plugin install development-best-practices@local
+/plugin install code-quality-standards@local
+/plugin install git-commit-conventions@local
+# ... 根据需要安装其他插件
 ```
 
 ## 📖 使用方法
@@ -179,22 +196,36 @@ git add .
 ```
 claude-skills-plugin/
 ├── .claude-plugin/
-│   ├── plugin.json              # 插件元数据
+│   ├── plugin.json              # 根插件元数据（已废弃）
 │   └── marketplace.json         # 市场配置
-├── skills/                       # 所有代理技能
+├── skills/                       # 所有代理技能（现为独立插件）
 │   ├── git-commit-conventions/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
 │   │   └── SKILL.md
 │   ├── pull-request-guidelines/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
 │   │   └── SKILL.md
 │   ├── code-quality-standards/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
 │   │   └── SKILL.md
 │   ├── language-preferences/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
 │   │   └── SKILL.md
 │   ├── documentation-guidelines/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
 │   │   └── SKILL.md
 │   ├── git-operations-safety/
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json
 │   │   └── SKILL.md
 │   └── frontend-architecture-design/
+│       ├── .claude-plugin/
+│       │   └── plugin.json
 │       ├── SKILL.md
 │       ├── PERFORMANCE.md
 │       ├── MAINTAINABILITY.md
@@ -212,7 +243,7 @@ claude-skills-plugin/
 
 1. Fork 此仓库
 2. 修改 `skills/` 目录中的技能文件以匹配你团队的标准
-3. 更新 `plugin.json` 中的信息
+3. 更新各个 `plugin.json` 文件中的信息
 4. 通过你自己的市场与团队共享
 
 ## 🤝 贡献

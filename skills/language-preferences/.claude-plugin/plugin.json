@@ -1,0 +1,19 @@
+{
+  "name": "language-preferences",
+  "description": "Language and interaction standards. Use when communicating with users, explaining code, reporting errors, or providing documentation.",
+  "version": "1.0.0",
+  "author": {
+    "name": "LeekJay",
+    "email": "leekjay@foxmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LeekJay/claude-skills-plugin"
+  },
+  "keywords": [
+    "language",
+    "communication",
+    "i18n",
+    "best-practices"
+  ]
+}

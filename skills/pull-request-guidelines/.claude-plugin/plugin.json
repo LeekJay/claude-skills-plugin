@@ -1,0 +1,19 @@
+{
+  "name": "pull-request-guidelines",
+  "description": "Standardize Pull Request workflow and content requirements. Use when creating PRs, preparing for code review, or validating PR content.",
+  "version": "1.0.0",
+  "author": {
+    "name": "LeekJay",
+    "email": "leekjay@foxmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LeekJay/claude-skills-plugin"
+  },
+  "keywords": [
+    "pull-request",
+    "pr",
+    "code-review",
+    "best-practices"
+  ]
+}

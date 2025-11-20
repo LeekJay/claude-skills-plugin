@@ -7,9 +7,39 @@
   "description": "A curated marketplace for development best practices plugins",
   "plugins": [
     {
-      "name": "development-best-practices",
-      "source": "./",
-      "description": "Comprehensive development best practices including Git conventions, code quality standards, documentation guidelines, and frontend architecture design"
+      "name": "code-quality-standards",
+      "source": "./skills/code-quality-standards",
+      "description": "Code quality check standards and workflow. Use when completing feature implementation, fixing bugs, or before creating commits/PRs."
+    },
+    {
+      "name": "documentation-guidelines",
+      "source": "./skills/documentation-guidelines",
+      "description": "Documentation creation and update standards. Use when considering creating documentation or when code changes involve documentation."
+    },
+    {
+      "name": "frontend-architecture-design",
+      "source": "./skills/frontend-architecture-design",
+      "description": "Review and redesign frontend project architecture, analyzing performance, maintainability, scalability, engineering, and type safety."
+    },
+    {
+      "name": "git-commit-conventions",
+      "source": "./skills/git-commit-conventions",
+      "description": "Standardize Git commit message format using Conventional Commits with Chinese subjects."
+    },
+    {
+      "name": "git-operations-safety",
+      "source": "./skills/git-operations-safety",
+      "description": "Git operation safety standards. Use before executing any Git operation, especially destructive ones."
+    },
+    {
+      "name": "language-preferences",
+      "source": "./skills/language-preferences",
+      "description": "Language and interaction standards. Use when communicating with users, explaining code, or reporting errors."
+    },
+    {
+      "name": "pull-request-guidelines",
+      "source": "./skills/pull-request-guidelines",
+      "description": "Standardize Pull Request workflow and content requirements."
     }
   ]
 }
