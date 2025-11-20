@@ -1,0 +1,15 @@
+{
+  "name": "development-best-practices-marketplace",
+  "owner": {
+    "name": "LeekJay",
+    "url": "https://github.com/LeekJay"
+  },
+  "description": "A curated marketplace for development best practices plugins",
+  "plugins": [
+    {
+      "name": "development-best-practices",
+      "source": ".",
+      "description": "Comprehensive development best practices including Git conventions, code quality standards, documentation guidelines, and frontend architecture design"
+    }
+  ]
+}
