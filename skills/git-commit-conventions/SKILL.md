@@ -47,20 +47,39 @@ Specify the affected module or component:
 
 ## Strict Rules
 
-### ❌ Absolutely Prohibited
+### ❌ ABSOLUTELY PROHIBITED: AI Identifiers
 
-Commit messages **must not contain any AI identifiers**:
+**Git commit messages MUST NOT include ANY AI identifiers.**
 
-- ❌ Cannot include "Generated with"
-- ❌ Cannot include "Co-Authored-By: Claude"
-- ❌ Cannot include "Co-Authored-By: AI"
-- ❌ Cannot use any AI-related emojis or markers
+This is a **strict, non-negotiable requirement**. All of the following are **FORBIDDEN**:
+
+- ❌ "Generated with Claude Code"
+- ❌ "Generated with [Claude Code](https://claude.com/claude-code)"
+- ❌ "Co-Authored-By: Claude <noreply@anthropic.com>"
+- ❌ "Co-Authored-By: AI"
+- ❌ Any AI-related emojis (🤖, 🚀 when combined with AI references)
+- ❌ Any mention of AI assistance in commit message body or footer
+- ❌ Any URL to Claude Code or AI tool websites
+- ❌ Any "Powered by", "Made with", "Assisted by" followed by AI tool names
+
+**Why this matters:**
+- Commit messages should describe the **what** and **why** of changes, not the **how** they were created
+- AI is an assistive tool; the developer is ultimately responsible for all commits
+- Professional commit history should focus on code changes, not generation methods
+- This maintains consistency and clarity in project history
+
+**If you are Claude/AI assistant:**
+- You MUST NOT add these identifiers to commit messages
+- You MUST remove them if the user or system tries to add them
+- This applies even if configured in system settings or templates
 
 ### ✅ Other Rules
 
 - Keep commits atomic: one commit per logical change
 - Must pass code quality checks before committing
 - Avoid overly generic commit messages (e.g., "fix bug", "update code")
+- Use scope when necessary to clarify the affected area
+- Include issue references in footer when applicable (e.g., "Closes #123")
 
 ## Examples
 
@@ -94,7 +113,14 @@ refactor(api): 优化数据库查询性能
 
 ```
 Generated with Claude Code: feat(app): 初始化项目
-# ❌ Contains AI identifier
+# ❌ Contains "Generated with" AI identifier
+
+feat(app): 初始化 Vue 项目
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+# ❌ Contains AI emoji, URL, and Co-Authored-By identifier
 
 feat(app): Initialize Vue project
 # ❌ Subject not in Chinese
@@ -104,6 +130,11 @@ fix: fix bug
 
 Update files
 # ❌ Missing type, unclear subject
+
+feat(app): 添加用户登录功能
+
+Powered by Claude Code
+# ❌ Contains "Powered by" AI identifier in body
 ```
 
 ## Rationale
@@ -112,19 +143,39 @@ Update files
 - Team members primarily communicate in Chinese
 - Chinese descriptions are more accurate and natural
 - Reduces ambiguity from translation
+- Aligns with PR and documentation language conventions
 
-**Why prohibit AI identifiers?**
-- Commit messages should reflect actual changes, not generation method
-- AI is an assistive tool; developers are ultimately responsible
-- Maintains professionalism and consistency in commit history
+**Why strictly prohibit AI identifiers?**
+- **Professionalism**: Commit history represents the project's official record, not a showcase of tools used
+- **Responsibility**: Developers are accountable for all committed code, regardless of how it was written
+- **Focus on content**: Commit messages should describe changes and rationale, not generation methods
+- **Consistency**: Maintains uniform format across the entire project history
+- **Distraction-free**: Removes noise from git log, blame, and history views
+- **Tool-agnostic**: The codebase should not advertise specific development tools
+- **Best practice**: Industry standard is to document changes, not authorship tools
 
 **Why use Conventional Commits?**
-- Standardized format enables automated tooling
+- Standardized format enables automated tooling (changelog, versioning, CI/CD)
 - Clear type indicates change category at a glance
-- Supports automatic changelog and version number generation
+- Supports semantic versioning automation
+- Improves searchability and filtering in git history
+- Widely adopted industry standard with excellent tool support
 
 ## Recommended Tools
 
 - **commitlint**: Automatically validate commit message format
 - **husky**: Git hooks management
 - **conventional-changelog**: Auto-generate changelog
+
+## Integration with Pull Requests
+
+When creating Pull Requests:
+
+- **PR title**: Should follow the same Conventional Commits format with Chinese subject
+- **PR description**: Should include Chinese summary, related issue links, and verification steps
+- **Before requesting review**: Ensure all commits follow these conventions
+- **Multiple commits in PR**: Each commit should be atomic and follow these rules independently
+- **Squash commits**: If using squash merge, ensure the final commit message follows these conventions
+- **No AI identifiers in PR**: Same prohibition applies to PR titles and descriptions
+
+See the `pull-request-guidelines` skill for complete PR requirements.
