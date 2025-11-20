@@ -6,10 +6,7 @@
     "name": "LeekJay",
     "email": "leekjay@foxmail.com"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LeekJay/claude-skills-plugin"
-  },
+  "repository": "https://github.com/LeekJay/claude-skills-plugin",
   "keywords": [
     "language",
     "communication",
