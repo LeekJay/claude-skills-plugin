@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "development-best-practices",
-      "source": ".",
+      "source": "./",
       "description": "Comprehensive development best practices including Git conventions, code quality standards, documentation guidelines, and frontend architecture design"
     }
   ]
