@@ -40,6 +40,11 @@
       "name": "pull-request-guidelines",
       "source": "./plugins/pull-request-guidelines",
       "description": "Standardize Pull Request workflow and content requirements."
+    },
+    {
+      "name": "typescript-strict-typing",
+      "source": "./skills/typescript-strict-typing",
+      "description": "MANDATORY for ALL TypeScript code: Enforces zero-tolerance type safety - prohibits any, as, @ts-ignore, !, implicit any, unsafe operations. Use when writing, fixing, implementing, refactoring any TypeScript code."
     }
   ]
 }
