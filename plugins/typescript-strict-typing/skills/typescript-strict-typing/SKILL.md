@@ -37,9 +37,21 @@ const element = document.getElementById('id') as HTMLInputElement
 // ❌ WRONG - double assertion
 const value = something as unknown as SomeType
 
-// ❌ WRONG - suppression comments
+// ❌ WRONG - TypeScript suppression comments
 // @ts-ignore
 // @ts-expect-error
+
+// ❌ WRONG - ESLint suppression comments for type rules
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+// eslint-disable-next-line @typescript-eslint/no-unsafe-call
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+// ❌ WRONG - ESLint config files that disable type safety rules
+// .eslintrc.js with rules turned off
 ```
 
 ### ❌ 2. Non-null Assertion Operator (!)
