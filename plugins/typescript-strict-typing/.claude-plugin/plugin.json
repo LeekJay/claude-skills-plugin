@@ -1,7 +1,7 @@
 {
   "name": "typescript-strict-typing",
   "description": "MANDATORY for ALL TypeScript code: Enforces zero-tolerance type safety - prohibits any, as, @ts-ignore, !, implicit any, unsafe operations. Applies to writing code, fixing bugs, implementing features, refactoring, async handling, data processing, third-party libs. Triggers on: TypeScript, TS, type error, type checking, write code, implement, refactor, fix, async, Promise, array operations, object access.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": {
     "name": "LeekJay",
     "email": "leekjay@foxmail.com"

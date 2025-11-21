@@ -1,6 +1,6 @@
 ---
 name: typescript-strict-typing
-description: Enforce strict TypeScript type safety standards for ALL code writing scenarios. Prohibits any, type assertions, @ts-ignore, non-null assertions, implicit any, and other type-unsafe patterns. Use this skill when writing ANY TypeScript code, fixing type errors, implementing features, or refactoring.
+description: Enforce strict TypeScript type safety standards for ALL code writing scenarios. Prohibits any, type assertions, @ts-ignore, @ts-expect-error, ESLint disable comments (eslint-disable-next-line @typescript-eslint/no-explicit-any, etc.), non-null assertions, implicit any, and other type-unsafe patterns. Use this skill when writing ANY TypeScript code, fixing type errors, implementing features, or refactoring.
 allowed-tools: []
 ---
 
