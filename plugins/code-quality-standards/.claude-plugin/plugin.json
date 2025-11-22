@@ -1,17 +1,20 @@
 {
   "name": "code-quality-standards",
-  "description": "Code quality check standards and workflow. Use when completing feature implementation, fixing bugs, or before creating commits/PRs.",
-  "version": "1.0.0",
+  "description": "Code quality check standards and workflow. Use when completing feature implementation, fixing bugs, or before creating commits/PRs. Now includes specialized sub-agent for executing checks and fixing issues with strict type safety enforcement.",
+  "version": "2.0.0",
   "author": {
     "name": "LeekJay",
     "email": "leekjay@foxmail.com"
   },
   "repository": "https://github.com/LeekJay/claude-skills-plugin",
+  "agents": "./agents",
   "keywords": [
     "code-quality",
     "linting",
     "formatting",
     "testing",
-    "typescript"
+    "typescript",
+    "type-safety",
+    "sub-agent"
   ]
 }
