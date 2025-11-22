@@ -7,7 +7,9 @@
     "email": "leekjay@foxmail.com"
   },
   "repository": "https://github.com/LeekJay/claude-skills-plugin",
-  "agents": "./agents",
+  "agents": [
+    "./agents/code-quality-checker.md"
+  ],
   "keywords": [
     "code-quality",
     "linting",
