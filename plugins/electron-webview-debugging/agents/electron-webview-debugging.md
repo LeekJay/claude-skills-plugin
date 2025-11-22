@@ -1,6 +1,6 @@
 ---
 name: electron-webview-debugging
-description: Specialized agent for debugging and troubleshooting Electron WebView Tag issues. Handles script injection, event monitoring, DevTools integration, and IPC communication debugging. Use when debugging Electron webview problems including load failures, blank screens, crashes, script injection issues, event handling problems, or IPC communication failures.
+description: Specialized agent for debugging and troubleshooting Electron WebView Tag issues. Handles script injection, event monitoring, DevTools integration, and IPC communication debugging. Use when debugging Electron webview problems including load failures, blank screens, crashes, script injection issues, event handling problems, or IPC communication failures. **IMPORTANT: Use subagent_type="electron-webview-debugging:electron-webview-debugging" when calling Task tool.**
 tools: Read, Grep, Glob, Bash
 model: sonnet
 ---

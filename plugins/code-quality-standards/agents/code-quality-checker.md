@@ -1,6 +1,6 @@
 ---
 name: code-quality-checker
-description: Specialized agent for executing comprehensive code quality checks and fixing issues. Runs formatting, linting, type checking, and testing in proper order with automatic error fixing and re-validation. Use after completing feature implementation, fixing bugs, or before creating commits/PRs. Enforces strict TypeScript type safety without escape mechanisms.
+description: Specialized agent for executing comprehensive code quality checks and fixing issues. Runs formatting, linting, type checking, and testing in proper order with automatic error fixing and re-validation. Use after completing feature implementation, fixing bugs, or before creating commits/PRs. Enforces strict TypeScript type safety without escape mechanisms. **IMPORTANT: Use subagent_type="code-quality-standards:code-quality-checker" when calling Task tool.**
 tools: Bash, Read, Grep, Glob, Edit, Write
 model: sonnet
 ---
