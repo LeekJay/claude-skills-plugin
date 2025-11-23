@@ -50,6 +50,11 @@
       "name": "electron-webview-debugging",
       "source": "./plugins/electron-webview-debugging",
       "description": "Debug and troubleshoot Electron WebView Tag with script injection, event monitoring, DevTools integration, and IPC communication debugging. Use when developing Electron applications with WebView components."
+    },
+    {
+      "name": "claude-code-editor",
+      "source": "./plugins/claude-code-editor",
+      "description": "Intelligent code editing and refactoring agent with isolated context execution. Handles large-scale refactoring, batch modifications, pattern replacements, and feature implementations without polluting main conversation."
     }
   ]
 }

@@ -1,0 +1,24 @@
+{
+  "name": "claude-code-editor",
+  "description": "Intelligent code editing and refactoring agent that executes code modifications in isolated context. Handles large-scale refactoring, batch modifications, pattern replacements, and feature implementations without polluting main conversation. Includes both skill interface and specialized sub-agent executor.",
+  "version": "1.0.0",
+  "author": {
+    "name": "LeekJay",
+    "email": "leekjay@foxmail.com"
+  },
+  "repository": "https://github.com/LeekJay/claude-skills-plugin",
+  "skills": [
+    "./skills/claude-code-editor/SKILL.md"
+  ],
+  "agents": [
+    "./agents/code-editor-executor.md"
+  ],
+  "keywords": [
+    "code-editor",
+    "refactoring",
+    "code-modification",
+    "batch-edit",
+    "sub-agent",
+    "context-isolation"
+  ]
+}
