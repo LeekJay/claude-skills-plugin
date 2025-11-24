@@ -2,7 +2,7 @@
 name: code-quality-checker
 description: Specialized agent for executing comprehensive code quality checks and fixing issues. Runs formatting, linting, type checking, and testing in proper order with automatic error fixing and re-validation. Use after completing feature implementation, fixing bugs, or before creating commits/PRs. Enforces strict TypeScript type safety without escape mechanisms. **IMPORTANT: Use subagent_type="code-quality-standards:code-quality-checker" when calling Task tool.**
 tools: Bash, Read, Grep, Glob, Edit, Write
-model: sonnet
+model: inherit
 ---
 
 # Code Quality Checker Agent
@@ -353,10 +353,24 @@ function handleResult<T>(result: Result<T>) {
 
 - **Bash**: Run check commands (format, lint, typecheck, test)
 - **Read**: Examine error files, package.json, configuration files
-- **Grep**: Search for patterns when debugging errors
+  - **IMPORTANT**: Minimize Read calls to avoid context bloat
+  - Only read files when absolutely necessary for fixing errors
+  - Use offset/limit parameters for large files
+  - Prefer Grep for locating specific error lines
+- **Grep**: Search for patterns when debugging errors (prefer this over Read when possible)
 - **Glob**: Find files matching patterns
 - **Edit**: Fix specific issues in files
 - **Write**: Create new files if needed (rare)
+
+## Performance Optimization
+
+**To avoid slowdowns and timeouts**:
+
+1. **Batch file reads**: Don't read files one by one, prioritize which files to read first
+2. **Use Grep strategically**: Search for error patterns before reading entire files
+3. **Limit Read scope**: Use offset/limit parameters to read only relevant sections
+4. **Minimize context**: After fixing errors, re-run checks immediately instead of reading more files
+5. **Early validation**: Re-run checks after fixing 2-3 files to catch new issues early
 
 ## Execution Principles
 
