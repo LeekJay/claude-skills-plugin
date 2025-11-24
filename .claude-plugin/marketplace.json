@@ -55,6 +55,11 @@
       "name": "claude-code-editor",
       "source": "./plugins/claude-code-editor",
       "description": "Intelligent code editing and refactoring agent with isolated context execution. Handles large-scale refactoring, batch modifications, pattern replacements, and feature implementations without polluting main conversation."
+    },
+    {
+      "name": "backend-architecture-design",
+      "source": "./plugins/backend-architecture-design",
+      "description": "Review and redesign Python FastAPI backend project architecture, analyzing API design, data architecture, security, async performance, code organization, and testing."
     }
   ]
 }
