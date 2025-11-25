@@ -60,6 +60,11 @@
       "name": "backend-architecture-design",
       "source": "./plugins/backend-architecture-design",
       "description": "Review and redesign Python FastAPI backend project architecture, analyzing API design, data architecture, security, async performance, code organization, and testing."
+    },
+    {
+      "name": "tech-stack-advisor",
+      "source": "./plugins/tech-stack-advisor",
+      "description": "Intelligent tech stack advisor providing technology selection recommendations through online research, comparative analysis, quantitative metrics, and implementation guidance. Use when making technology decisions for frontend, backend, databases, or tools."
     }
   ]
 }
