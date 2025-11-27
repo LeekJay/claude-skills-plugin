@@ -9,62 +9,74 @@
     {
       "name": "code-quality-standards",
       "source": "./plugins/code-quality-standards",
-      "description": "Code quality check standards and workflow. Use when completing feature implementation, fixing bugs, or before creating commits/PRs."
+      "description": "Code quality check standards and workflow. Use when completing feature implementation, fixing bugs, or before creating commits/PRs.",
+      "category": "code-quality"
     },
     {
       "name": "documentation-guidelines",
       "source": "./plugins/documentation-guidelines",
-      "description": "Documentation creation and update standards. Use when considering creating documentation or when code changes involve documentation."
+      "description": "Documentation creation and update standards. Use when considering creating documentation or when code changes involve documentation.",
+      "category": "workflow"
     },
     {
       "name": "frontend-architecture-design",
       "source": "./plugins/frontend-architecture-design",
-      "description": "Review and redesign frontend project architecture, analyzing performance, maintainability, scalability, engineering, and type safety."
+      "description": "Review and redesign frontend project architecture, analyzing performance, maintainability, scalability, engineering, and type safety.",
+      "category": "architecture"
     },
     {
       "name": "git-commit-conventions",
       "source": "./plugins/git-commit-conventions",
-      "description": "Standardize Git commit message format using Conventional Commits with Chinese subjects."
+      "description": "Standardize Git commit message format using Conventional Commits with Chinese subjects.",
+      "category": "git"
     },
     {
       "name": "git-operations-safety",
       "source": "./plugins/git-operations-safety",
-      "description": "Git operation safety standards. Use before executing any Git operation, especially destructive ones."
+      "description": "Git operation safety standards. Use before executing any Git operation, especially destructive ones.",
+      "category": "git"
     },
     {
       "name": "language-preferences",
       "source": "./plugins/language-preferences",
-      "description": "Language and interaction standards. Use when communicating with users, explaining code, or reporting errors."
+      "description": "Language and interaction standards. Use when communicating with users, explaining code, or reporting errors.",
+      "category": "workflow"
     },
     {
       "name": "pull-request-guidelines",
       "source": "./plugins/pull-request-guidelines",
-      "description": "Standardize Pull Request workflow and content requirements."
+      "description": "Standardize Pull Request workflow and content requirements.",
+      "category": "git"
     },
     {
       "name": "typescript-strict-typing",
       "source": "./plugins/typescript-strict-typing",
-      "description": "MANDATORY for ALL TypeScript code: Enforces zero-tolerance type safety - prohibits any, as, @ts-ignore, !, implicit any, unsafe operations. Use when writing, fixing, implementing, refactoring any TypeScript code."
+      "description": "MANDATORY for ALL TypeScript code: Enforces zero-tolerance type safety - prohibits any, as, @ts-ignore, !, implicit any, unsafe operations. Use when writing, fixing, implementing, refactoring any TypeScript code.",
+      "category": "code-quality"
     },
     {
       "name": "electron-webview-debugging",
       "source": "./plugins/electron-webview-debugging",
-      "description": "Debug and troubleshoot Electron WebView Tag with script injection, event monitoring, DevTools integration, and IPC communication debugging. Use when developing Electron applications with WebView components."
+      "description": "Debug and troubleshoot Electron WebView Tag with script injection, event monitoring, DevTools integration, and IPC communication debugging. Use when developing Electron applications with WebView components.",
+      "category": "debugging"
     },
     {
       "name": "claude-code-editor",
       "source": "./plugins/claude-code-editor",
-      "description": "Intelligent code editing and refactoring agent with isolated context execution. Handles large-scale refactoring, batch modifications, pattern replacements, and feature implementations without polluting main conversation."
+      "description": "Intelligent code editing and refactoring agent with isolated context execution. Handles large-scale refactoring, batch modifications, pattern replacements, and feature implementations without polluting main conversation.",
+      "category": "agent"
     },
     {
       "name": "backend-architecture-design",
       "source": "./plugins/backend-architecture-design",
-      "description": "Review and redesign Python FastAPI backend project architecture, analyzing API design, data architecture, security, async performance, code organization, and testing. Use when backend architecture review, API design analysis, database optimization, security assessment, or architectural improvements are needed."
+      "description": "Review and redesign Python FastAPI backend project architecture, analyzing API design, data architecture, security, async performance, code organization, and testing. Use when backend architecture review, API design analysis, database optimization, security assessment, or architectural improvements are needed.",
+      "category": "architecture"
     },
     {
       "name": "tech-stack-advisor",
       "source": "./plugins/tech-stack-advisor",
-      "description": "Intelligent tech stack advisor providing technology selection recommendations through online research, comparative analysis, quantitative metrics, and implementation guidance. Use when making technology decisions for frontend, backend, databases, or tools."
+      "description": "Intelligent tech stack advisor providing technology selection recommendations through online research, comparative analysis, quantitative metrics, and implementation guidance. Use when making technology decisions for frontend, backend, databases, or tools.",
+      "category": "agent"
     }
   ]
 }
