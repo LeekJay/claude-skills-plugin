@@ -46,21 +46,47 @@ This skill provides intelligent bug fixing capabilities through a hybrid archite
 
 ## Decision Framework
 
-Use this flowchart to decide when to delegate to sub-agent:
+**Default behavior: For bug fixing tasks, prefer Sub-Agent mode unless the task is clearly simple.**
+
+### 🔴 Mandatory Sub-Agent Triggers (ANY ONE triggers delegation)
+
+1. **Multi-file scope**: Bug description mentions 2+ files or modules
+2. **Unknown root cause**: Requires investigation ("sometimes...", "occasionally...", "intermittent...")
+3. **Complex keywords**: Description contains race condition, memory leak, data inconsistency, state sync, cache issues, deadlock
+4. **Cross-layer issues**: Involves frontend+backend, multiple services, database+application layer
+5. **Debugging required**: Needs logging, breakpoints, execution flow tracing
+6. **Regression/recurring**: Bug existed before, was fixed but reappeared, or has history
+7. **Test-related**: Needs test writing for verification, involves test framework issues
+8. **Unclear reproduction**: User cannot reliably reproduce the bug
+
+### 🟢 Main Conversation Handling (ALL conditions must be met)
+
+1. **Single-file fix**: Clearly only 1 file needs modification
+2. **Clear cause**: User already knows the problem ("missing null check", "typo in variable name")
+3. **Simple fix**: Adding a condition, fixing typo, adjusting parameter order
+4. **No verification needed**: Can confirm fix is correct without running tests
+
+### Decision Flow
 
 ```
-Is the bug simple and isolated (1-2 files)?
-  ├─ YES → Handle in main conversation (skill mode)
-  └─ NO → Continue evaluation
-      │
-      Does the fix require changes to 3+ files?
-        ├─ NO → Consider main conversation
-        └─ YES → Continue evaluation
-            │
-            Will fixing require multiple iterations/experiments?
-              ├─ NO → Main conversation might work
-              └─ YES → ✅ USE SUB-AGENT MODE
+Check for ANY 🔴 mandatory trigger?
+  ├─ YES → ✅ USE SUB-AGENT MODE immediately
+  └─ NO → Check if ALL 🟢 simple conditions are met?
+           ├─ YES → Handle in main conversation
+           └─ NO → ✅ USE SUB-AGENT MODE (default behavior)
 ```
+
+### Quick Reference Examples
+
+| User Description | Trigger Signal | Decision |
+|-----------------|----------------|----------|
+| "Login button doesn't respond" | 🔴 Unknown cause | Sub-Agent |
+| "This map() call is missing key prop" | 🟢 All simple conditions met | Main conversation |
+| "User data sometimes shows wrong values" | 🔴 Unknown cause + "sometimes" | Sub-Agent |
+| "Remove this console.log" | 🟢 All conditions met | Main conversation |
+| "Payment flow occasionally fails" | 🔴 Unknown cause + cross-layer | Sub-Agent |
+| "TypeError in UserProfile component" | 🔴 Requires investigation | Sub-Agent |
+| "Add missing semicolon on line 42" | 🟢 All conditions met | Main conversation |
 
 ## Usage Modes
 

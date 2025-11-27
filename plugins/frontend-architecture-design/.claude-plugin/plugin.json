@@ -1,7 +1,7 @@
 {
   "name": "frontend-architecture-design",
   "description": "Review and redesign frontend project architecture, analyzing performance, maintainability, scalability, engineering, and type safety. Supports React, Vue, and other tech stacks. Now includes specialized sub-agent for comprehensive architecture reviews.",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": {
     "name": "LeekJay",
     "email": "leekjay@foxmail.com"

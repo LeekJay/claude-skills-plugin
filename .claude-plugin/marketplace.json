@@ -60,7 +60,7 @@
       "name": "backend-architecture-design",
       "source": "./plugins/backend-architecture-design",
       "description": "Review and redesign Python FastAPI backend project architecture, analyzing API design, data architecture, security, async performance, code organization, and testing. Use when backend architecture review, API design analysis, database optimization, security assessment, or architectural improvements are needed.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "LeekJay",
         "email": "leekjay@foxmail.com"

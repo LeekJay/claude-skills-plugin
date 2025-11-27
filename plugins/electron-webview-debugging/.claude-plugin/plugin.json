@@ -1,7 +1,7 @@
 {
   "name": "electron-webview-debugging",
   "description": "Debug and troubleshoot Electron WebView Tag with script injection, event monitoring, DevTools integration, and IPC communication debugging. Use when developing Electron applications with WebView components. Now includes specialized sub-agent for systematic debugging workflows.",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": {
     "name": "LeekJay",
     "email": "leekjay@foxmail.com"

@@ -1,7 +1,7 @@
 {
   "name": "bug-fix",
   "description": "Intelligent bug fixing agent with hybrid architecture for systematic bug identification, root cause analysis, and reliable fixes. Handles simple bugs in main conversation via skill, delegates complex multi-file bugs to specialized sub-agent executor. Includes impact assessment, test-driven fixing, and rollback safety.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "LeekJay",
     "email": "leekjay@foxmail.com"

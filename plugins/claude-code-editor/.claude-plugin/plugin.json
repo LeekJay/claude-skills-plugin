@@ -1,7 +1,7 @@
 {
   "name": "claude-code-editor",
   "description": "Intelligent code editing and refactoring agent that executes code modifications in isolated context. Handles large-scale refactoring, batch modifications, pattern replacements, and feature implementations without polluting main conversation. Includes both skill interface and specialized sub-agent executor.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "LeekJay",
     "email": "leekjay@foxmail.com"

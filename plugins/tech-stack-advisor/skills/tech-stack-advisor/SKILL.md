@@ -69,6 +69,52 @@ Based on user needs, clearly recommend:
 - Key decision factors
 - Follow-up suggestions
 
+## Decision Framework
+
+**Default behavior: For tech stack decisions with significant impact, prefer Sub-Agent mode for thorough research.**
+
+### 🔴 Mandatory Sub-Agent Triggers (ANY ONE triggers delegation)
+
+1. **Major decision**: Technology choice will significantly impact project architecture
+2. **Need latest data**: User needs current trends, benchmarks, or statistics
+3. **Multiple options**: Comparing 3+ technology options systematically
+4. **Migration assessment**: Evaluating migration cost or effort from existing stack
+5. **Formal report**: User wants a detailed comparison report with metrics
+6. **Risk analysis**: Need to assess risks, long-term support, community health
+7. **Enterprise context**: Decision for large team or enterprise-scale project
+8. **Unfamiliar domain**: Technology area outside common knowledge (niche tools, emerging tech)
+
+### 🟢 Main Conversation Handling (ALL conditions must be met)
+
+1. **Simple comparison**: Just 2 well-known options (React vs Vue, PostgreSQL vs MySQL)
+2. **Quick opinion**: User just wants a quick recommendation, not detailed analysis
+3. **Common scenario**: Standard use case with established best practices
+4. **No research needed**: Answer can be given from existing knowledge
+
+### Decision Flow
+
+```
+Check for ANY 🔴 mandatory trigger?
+  ├─ YES → ✅ USE SUB-AGENT MODE immediately
+  │         subagent_type="tech-stack-advisor:tech-stack-advisor"
+  └─ NO → Check if ALL 🟢 simple conditions are met?
+           ├─ YES → Handle in main conversation
+           └─ NO → ✅ USE SUB-AGENT MODE (default behavior)
+```
+
+### Quick Reference Examples
+
+| User Description | Trigger Signal | Decision |
+|-----------------|----------------|----------|
+| "React or Vue for admin dashboard?" | 🟢 Simple comparison, common scenario | Main conversation |
+| "Compare all state management options" | 🔴 Multiple options | Sub-Agent |
+| "What's the current trend for X?" | 🔴 Need latest data | Sub-Agent |
+| "PostgreSQL or MySQL for my app?" | 🟢 Simple comparison | Main conversation |
+| "Migration cost from Webpack to Vite?" | 🔴 Migration assessment | Sub-Agent |
+| "Quick recommendation for testing lib?" | 🟢 Quick opinion | Main conversation |
+| "Full tech stack report for new project" | 🔴 Formal report | Sub-Agent |
+| "Should I use Tailwind?" | 🟢 Quick opinion, common scenario | Main conversation |
+
 ## Usage Modes
 
 ### Quick Consultation Mode (Skill)
@@ -90,11 +136,7 @@ If users need:
 - Quantitative analysis with data metrics
 - Migration cost assessment
 
-Recommend using Task tool to invoke the deep analysis agent:
-```
-**Important**: For in-depth research and detailed comparison reports, use Task tool with:
-subagent_type="tech-stack-advisor:tech-stack-advisor"
-```
+The Sub-Agent will automatically be invoked based on the Decision Framework above.
 
 ## Response Principles
 

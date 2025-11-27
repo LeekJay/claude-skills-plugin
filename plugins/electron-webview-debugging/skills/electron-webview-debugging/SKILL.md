@@ -6,6 +6,52 @@ allowed-tools: Read, Grep, Glob, Bash
 
 # Electron WebView Tag Debugging Skill
 
+## Decision Framework
+
+**Default behavior: For WebView debugging tasks, prefer Sub-Agent mode for systematic troubleshooting.**
+
+### 🔴 Mandatory Sub-Agent Triggers (ANY ONE triggers delegation)
+
+1. **Unknown cause**: WebView not working and cause is unclear (blank screen, crash, not loading)
+2. **Multi-aspect debugging**: Issue involves 2+ areas (IPC + events, preload + security, etc.)
+3. **Security configuration**: Any security-related WebView configuration review
+4. **IPC communication issues**: Debugging communication between main process and WebView
+5. **Systematic investigation**: Need to check configuration, events, and scripts together
+6. **Crash/failure analysis**: WebView crashes, freezes, or fails to load
+7. **Preload script issues**: Script injection not working, context isolation problems
+8. **Performance debugging**: WebView running slow, memory issues
+
+### 🟢 Main Conversation Handling (ALL conditions must be met)
+
+1. **Single aspect**: Only checking one specific thing (e.g., "is this attribute correct?")
+2. **Quick answer**: Simple questions about WebView API or configuration
+3. **Known fix**: Already know what's wrong, just need syntax/usage help
+4. **Documentation lookup**: Just need to check how to use a specific API
+
+### Decision Flow
+
+```
+Check for ANY 🔴 mandatory trigger?
+  ├─ YES → ✅ USE SUB-AGENT MODE immediately
+  │         subagent_type="electron-webview-debugging:electron-webview-debugging"
+  └─ NO → Check if ALL 🟢 simple conditions are met?
+           ├─ YES → Handle in main conversation
+           └─ NO → ✅ USE SUB-AGENT MODE (default behavior)
+```
+
+### Quick Reference Examples
+
+| User Description | Trigger Signal | Decision |
+|-----------------|----------------|----------|
+| "WebView shows blank screen" | 🔴 Unknown cause | Sub-Agent |
+| "How do I use executeJavaScript?" | 🟢 Documentation lookup | Main conversation |
+| "WebView crashes when loading" | 🔴 Crash analysis | Sub-Agent |
+| "Is this webpreferences correct?" | 🟢 Quick answer | Main conversation |
+| "IPC messages not received" | 🔴 IPC communication issues | Sub-Agent |
+| "What events can I listen to?" | 🟢 Documentation lookup | Main conversation |
+| "Preload script not executing" | 🔴 Preload script issues | Sub-Agent |
+| "Review WebView security config" | 🔴 Security configuration | Sub-Agent |
+
 ## When to Use This Skill
 
 ### ✅ Required Usage

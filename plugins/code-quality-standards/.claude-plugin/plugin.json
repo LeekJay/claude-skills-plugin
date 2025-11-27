@@ -1,7 +1,7 @@
 {
   "name": "code-quality-standards",
   "description": "Code quality check standards and workflow. Use when completing feature implementation, fixing bugs, or before creating commits/PRs. Now includes specialized sub-agent for executing checks and fixing issues with strict type safety enforcement.",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": {
     "name": "LeekJay",
     "email": "leekjay@foxmail.com"

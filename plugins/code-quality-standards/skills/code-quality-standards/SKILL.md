@@ -8,6 +8,52 @@ allowed-tools: Bash
 
 Ensure code quality and project maintainability through standardized check workflows.
 
+## Decision Framework
+
+**Default behavior: For comprehensive code quality checks, prefer Sub-Agent mode to ensure thorough validation.**
+
+### 🔴 Mandatory Sub-Agent Triggers (ANY ONE triggers delegation)
+
+1. **Full quality check**: User requests complete code quality validation before commit/PR
+2. **Multiple check types**: Needs format + lint + typecheck + test (2+ check types)
+3. **Fix and verify cycle**: Errors found that need fixing and re-verification
+4. **Large changeset**: Changes span 5+ files or significant code modifications
+5. **Pre-release check**: Final validation before release or deployment
+6. **CI failure investigation**: Investigating why CI checks failed
+7. **Type error fixing**: Multiple type errors that need systematic fixing
+8. **Iterative fixing**: Fixes may introduce new errors requiring multiple rounds
+
+### 🟢 Main Conversation Handling (ALL conditions must be met)
+
+1. **Single check**: Only running one command (e.g., "run lint" or "run tests")
+2. **Quick verification**: Just checking if something passes, not fixing
+3. **Known simple fix**: Already know what to fix, just need to apply it
+4. **No iteration needed**: Single pass expected to succeed
+
+### Decision Flow
+
+```
+Check for ANY 🔴 mandatory trigger?
+  ├─ YES → ✅ USE SUB-AGENT MODE immediately
+  │         subagent_type="code-quality-standards:code-quality-checker"
+  └─ NO → Check if ALL 🟢 simple conditions are met?
+           ├─ YES → Handle in main conversation
+           └─ NO → ✅ USE SUB-AGENT MODE (default behavior)
+```
+
+### Quick Reference Examples
+
+| User Description | Trigger Signal | Decision |
+|-----------------|----------------|----------|
+| "Run all quality checks" | 🔴 Full quality check | Sub-Agent |
+| "Just run pnpm lint" | 🟢 Single check | Main conversation |
+| "Fix all type errors" | 🔴 Type error fixing | Sub-Agent |
+| "Check if tests pass" | 🟢 Quick verification | Main conversation |
+| "Prepare code for PR" | 🔴 Pre-release check | Sub-Agent |
+| "Run format" | 🟢 Single check | Main conversation |
+| "Why is CI failing?" | 🔴 CI failure investigation | Sub-Agent |
+| "I changed 10 files, please verify" | 🔴 Large changeset | Sub-Agent |
+
 ## When to Execute
 
 ✅ **Must execute full checks**:

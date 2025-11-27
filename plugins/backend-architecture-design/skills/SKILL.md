@@ -8,6 +8,53 @@ allowed-tools: Read, Grep, Glob
 
 Comprehensive Python FastAPI backend project architecture review from six key dimensions: API design, data architecture, security, async performance, code organization, and testing & quality.
 
+## Decision Framework
+
+**Default behavior: For backend architecture review tasks, prefer Sub-Agent mode for thorough analysis.**
+
+### 🔴 Mandatory Sub-Agent Triggers (ANY ONE triggers delegation)
+
+1. **Full architecture review**: User requests comprehensive backend architecture analysis
+2. **Multi-dimension analysis**: Needs evaluation across 2+ dimensions (API, security, performance, etc.)
+3. **Security assessment**: Any security-related review or audit request
+4. **Database optimization**: N+1 detection, query optimization, schema review
+5. **Redesign request**: User mentions "redesign", "restructure", "overhaul", "major refactor"
+6. **Performance audit**: Async performance analysis, bottleneck detection
+7. **Report generation**: User wants a formal architecture review report
+8. **Migration planning**: Database migration, API versioning, framework upgrade
+9. **Large codebase**: Project has 20+ API endpoints or 30+ source files
+
+### 🟢 Main Conversation Handling (ALL conditions must be met)
+
+1. **Single dimension**: Only checking one specific aspect (e.g., "is this endpoint RESTful?")
+2. **Quick question**: Simple questions like "is this pattern okay?" or "should I use Depends here?"
+3. **Small scope**: Looking at 1-3 specific files or endpoints
+4. **No report needed**: Just need quick feedback, not a formal report
+
+### Decision Flow
+
+```
+Check for ANY 🔴 mandatory trigger?
+  ├─ YES → ✅ USE SUB-AGENT MODE immediately
+  │         subagent_type="backend-architecture-design:backend-architecture-design"
+  └─ NO → Check if ALL 🟢 simple conditions are met?
+           ├─ YES → Handle in main conversation
+           └─ NO → ✅ USE SUB-AGENT MODE (default behavior)
+```
+
+### Quick Reference Examples
+
+| User Description | Trigger Signal | Decision |
+|-----------------|----------------|----------|
+| "Review the backend architecture" | 🔴 Full review | Sub-Agent |
+| "Is this endpoint naming correct?" | 🟢 Quick question, small scope | Main conversation |
+| "Check API design and security" | 🔴 Multi-dimension | Sub-Agent |
+| "Review authentication implementation" | 🔴 Security assessment | Sub-Agent |
+| "Find N+1 queries in the project" | 🔴 Database optimization | Sub-Agent |
+| "Should I use async here?" | 🟢 Quick question | Main conversation |
+| "Generate architecture report" | 🔴 Report generation | Sub-Agent |
+| "Is this Pydantic model okay?" | 🟢 Quick question, small scope | Main conversation |
+
 ## Core Review Dimensions
 
 ### 1. API Design

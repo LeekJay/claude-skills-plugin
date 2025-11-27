@@ -42,21 +42,48 @@ This skill provides intelligent code editing and refactoring capabilities throug
 
 ## Decision Framework
 
-Use this flowchart to decide when to delegate to sub-agent:
+**Default behavior: For complex editing tasks, prefer Sub-Agent mode unless the task is clearly simple.**
+
+### 🔴 Mandatory Sub-Agent Triggers (ANY ONE triggers delegation)
+
+1. **Multi-file scope**: Task involves 3+ files or mentions "across the project/codebase"
+2. **Refactoring keywords**: Description contains refactor, migrate, restructure, reorganize, architecture
+3. **Batch operations**: "all files", "every component", "throughout", "project-wide"
+4. **Pattern replacement**: Converting patterns, updating API usage, library migration
+5. **Structural changes**: Moving files, renaming directories, changing folder structure
+6. **Feature implementation**: New feature touching multiple modules/layers
+7. **Import chain effects**: Changes that will cascade through import dependencies
+8. **Unknown scope**: Cannot immediately determine how many files are affected
+
+### 🟢 Main Conversation Handling (ALL conditions must be met)
+
+1. **Limited scope**: 1-2 files maximum, clearly identified
+2. **Isolated change**: No cascading effects on other files
+3. **Simple operation**: Rename one function, extract one utility, add one type
+4. **Clear outcome**: Can describe exact changes before starting
+
+### Decision Flow
 
 ```
-Is the task complex (3+ files or 5+ edits)?
-  ├─ NO → Handle in main conversation (skill mode)
-  └─ YES → Continue evaluation
-      │
-      Will it require multiple rounds of fixes?
-        ├─ NO → Consider main conversation
-        └─ YES → Continue evaluation
-            │
-            Will intermediate steps clutter conversation?
-              ├─ NO → Main conversation is fine
-              └─ YES → ✅ USE SUB-AGENT MODE
+Check for ANY 🔴 mandatory trigger?
+  ├─ YES → ✅ USE SUB-AGENT MODE immediately
+  └─ NO → Check if ALL 🟢 simple conditions are met?
+           ├─ YES → Handle in main conversation
+           └─ NO → ✅ USE SUB-AGENT MODE (default behavior)
 ```
+
+### Quick Reference Examples
+
+| User Description | Trigger Signal | Decision |
+|-----------------|----------------|----------|
+| "Rename processData to transformData in utils.ts" | 🟢 All simple conditions met | Main conversation |
+| "Refactor authentication system" | 🔴 "refactor" + architectural | Sub-Agent |
+| "Update all components to use new API" | 🔴 "all" + batch operation | Sub-Agent |
+| "Add a return type to this function" | 🟢 Single file, isolated | Main conversation |
+| "Migrate from moment.js to date-fns" | 🔴 "migrate" + library change | Sub-Agent |
+| "Move utils to a new folder and update imports" | 🔴 Structural + import chain | Sub-Agent |
+| "Extract this logic into a hook" | 🟢 Limited scope, clear outcome | Main conversation |
+| "Implement user preferences feature" | 🔴 Feature implementation | Sub-Agent |
 
 ## Usage Modes
 

@@ -8,6 +8,52 @@ allowed-tools: Read, Grep, Glob
 
 Comprehensive frontend project architecture review from five key dimensions: performance, maintainability, scalability, engineering, and type safety.
 
+## Decision Framework
+
+**Default behavior: For architecture review tasks, prefer Sub-Agent mode for thorough analysis.**
+
+### 🔴 Mandatory Sub-Agent Triggers (ANY ONE triggers delegation)
+
+1. **Full architecture review**: User requests comprehensive/complete architecture analysis
+2. **Multi-dimension analysis**: Needs evaluation across 2+ dimensions (performance, maintainability, etc.)
+3. **Large codebase**: Project has 50+ components or 100+ source files
+4. **Redesign request**: User mentions "redesign", "restructure", "overhaul", "major refactor"
+5. **Migration planning**: Evaluating tech stack migration or major upgrades
+6. **Performance audit**: Deep performance analysis with metrics collection
+7. **Report generation**: User wants a formal architecture review report
+8. **Comparison analysis**: Comparing old vs new architecture, or multiple approaches
+
+### 🟢 Main Conversation Handling (ALL conditions must be met)
+
+1. **Single dimension**: Only checking one specific aspect (e.g., "check TypeScript config")
+2. **Quick question**: Simple questions like "is this pattern okay?" or "what's wrong with this structure?"
+3. **Small scope**: Looking at 1-3 specific files or components
+4. **No report needed**: Just need quick feedback, not a formal report
+
+### Decision Flow
+
+```
+Check for ANY 🔴 mandatory trigger?
+  ├─ YES → ✅ USE SUB-AGENT MODE immediately
+  │         subagent_type="frontend-architecture-design:frontend-architecture-design"
+  └─ NO → Check if ALL 🟢 simple conditions are met?
+           ├─ YES → Handle in main conversation
+           └─ NO → ✅ USE SUB-AGENT MODE (default behavior)
+```
+
+### Quick Reference Examples
+
+| User Description | Trigger Signal | Decision |
+|-----------------|----------------|----------|
+| "Review the frontend architecture" | 🔴 Full review | Sub-Agent |
+| "Is this component structure okay?" | 🟢 Quick question, small scope | Main conversation |
+| "Analyze performance and maintainability" | 🔴 Multi-dimension | Sub-Agent |
+| "Check my tsconfig settings" | 🟢 Single dimension, small scope | Main conversation |
+| "We need to restructure the app" | 🔴 Redesign request | Sub-Agent |
+| "What's wrong with this import?" | 🟢 Quick question | Main conversation |
+| "Generate an architecture report" | 🔴 Report generation | Sub-Agent |
+| "Should I use barrel exports?" | 🟢 Quick question | Main conversation |
+
 ## Core Review Dimensions
 
 ### 1. Performance Optimization
