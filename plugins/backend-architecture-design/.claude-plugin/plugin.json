@@ -1,0 +1,32 @@
+{
+  "name": "backend-architecture-design",
+  "description": "Review and redesign Python FastAPI backend project architecture, analyzing API design, data architecture, security, async performance, code organization, and testing. Use when backend architecture review, API design analysis, database optimization, security assessment, or architectural improvements are needed.",
+  "version": "1.1.0",
+  "author": {
+    "name": "LeekJay",
+    "email": "leekjay@foxmail.com"
+  },
+  "repository": "https://github.com/LeekJay/claude-skills-plugin",
+  "skills": [
+    "./skills/backend-architecture-design/API_DESIGN.md",
+    "./skills/backend-architecture-design/ASYNC_PERFORMANCE.md",
+    "./skills/backend-architecture-design/CODE_ORGANIZATION.md",
+    "./skills/backend-architecture-design/DATA_ARCHITECTURE.md",
+    "./skills/backend-architecture-design/SECURITY.md",
+    "./skills/backend-architecture-design/SKILL.md",
+    "./skills/backend-architecture-design/TESTING.md"
+  ],
+  "agents": [
+    "./agents/backend-architecture-design.md"
+  ],
+  "keywords": [
+    "architecture",
+    "backend",
+    "fastapi",
+    "python",
+    "api-design",
+    "security",
+    "performance",
+    "sub-agent"
+  ]
+}
