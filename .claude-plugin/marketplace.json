@@ -61,6 +61,12 @@
       "category": "debugging"
     },
     {
+      "name": "bug-fix",
+      "source": "./plugins/bug-fix",
+      "description": "Intelligent bug fixing with hybrid architecture for systematic bug identification, root cause analysis, and reliable fixes. Handles simple bugs in main conversation via skill, delegates complex multi-file bugs to specialized sub-agent executor.",
+      "category": "debugging"
+    },
+    {
       "name": "claude-code-editor",
       "source": "./plugins/claude-code-editor",
       "description": "Intelligent code editing and refactoring agent with isolated context execution. Handles large-scale refactoring, batch modifications, pattern replacements, and feature implementations without polluting main conversation.",

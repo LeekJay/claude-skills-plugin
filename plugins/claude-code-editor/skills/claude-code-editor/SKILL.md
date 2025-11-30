@@ -1,3 +1,9 @@
+---
+name: claude-code-editor
+description: Intelligent code editing and refactoring agent that executes code modifications in isolated context. Handles large-scale refactoring, batch modifications, pattern replacements, and feature implementations without polluting main conversation.
+allowed-tools: Read, Grep, Glob, Edit, Write, Bash
+---
+
 # Claude Code Editor Skill
 
 ## Overview

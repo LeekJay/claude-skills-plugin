@@ -1,3 +1,9 @@
+---
+name: bug-fix
+description: Intelligent bug fixing agent with hybrid architecture for systematic bug identification, root cause analysis, and reliable fixes. Handles simple bugs in main conversation via skill, delegates complex multi-file bugs to specialized sub-agent executor.
+allowed-tools: Read, Grep, Glob, Edit, Write, Bash
+---
+
 # Bug Fix Skill
 
 ## Overview
