@@ -2,7 +2,7 @@
 name: backend-architecture-design
 description: Specialized agent for comprehensive Python FastAPI backend project architecture review and redesign. Analyzes API design, data architecture, security, async performance, code organization, and testing. Use when backend architecture review, API design analysis, database optimization, security assessment, or architectural improvements are needed. Also use when the user mentions backend architecture is unreasonable, needs restructuring, wants to refactor, or improve API/database design. **IMPORTANT: Use subagent_type="backend-architecture-design:backend-architecture-design" when calling Task tool.**
 tools: Read, Grep, Glob, Bash
-model: sonnet
+model: inherit
 ---
 
 # Backend Architecture Design & Review Agent

@@ -2,7 +2,7 @@
 name: frontend-architecture-design
 description: Specialized agent for comprehensive frontend project architecture review and redesign. Analyzes performance, maintainability, scalability, engineering, and type safety across React, Vue, and other tech stacks. Use when architecture review, code structure analysis, architecture redesign, performance optimization, or architectural improvements are needed. Also use when the user mentions architecture is unreasonable, needs restructuring, wants to refactor, or improve code organization. **IMPORTANT: Use subagent_type="frontend-architecture-design:frontend-architecture-design" when calling Task tool.**
 tools: Read, Grep, Glob, Bash
-model: sonnet
+model: inherit
 ---
 
 # Frontend Architecture Design & Review Agent

@@ -2,7 +2,7 @@
 name: code-editor-executor
 description: Specialized agent for executing complex code editing and refactoring tasks in isolated context. Handles large-scale refactoring, batch modifications, pattern replacements, and feature implementations without polluting main conversation. Works systematically through planning, execution, verification, and reporting phases. **IMPORTANT: Use subagent_type="claude-code-editor:code-editor-executor" when calling Task tool.**
 tools: Read, Grep, Glob, Edit, Write, Bash
-model: sonnet
+model: inherit
 ---
 
 # Code Editor Executor Agent

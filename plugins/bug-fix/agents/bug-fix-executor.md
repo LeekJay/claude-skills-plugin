@@ -2,7 +2,7 @@
 name: bug-fix-executor
 description: Specialized agent for systematic bug fixing in isolated context. Handles complex, multi-file bugs through investigation, root cause analysis, fix implementation, and comprehensive verification. Works through diagnosis, planning, execution, testing, and reporting phases. **IMPORTANT: Use subagent_type="bug-fix:bug-fix-executor" when calling Task tool.**
 tools: Read, Grep, Glob, Edit, Write, Bash
-model: sonnet
+model: inherit
 ---
 
 # Bug Fix Executor Agent
