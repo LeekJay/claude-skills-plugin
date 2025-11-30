@@ -7,6 +7,9 @@
     "email": "leekjay@foxmail.com"
   },
   "repository": "https://github.com/LeekJay/claude-skills-plugin",
+  "skills": [
+    "./skills/language-preferences/SKILL.md"
+  ],
   "keywords": [
     "language",
     "communication",
