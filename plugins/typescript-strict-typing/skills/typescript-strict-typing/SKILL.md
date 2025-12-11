@@ -358,17 +358,17 @@ const value = something as SpecificType
 
 Before writing any TypeScript code, verify:
 
-- [ ] No `any` types
-- [ ] No `as` type assertions
-- [ ] No `@ts-ignore` or `@ts-expect-error`
-- [ ] No `!` non-null assertions
-- [ ] All function parameters have types
-- [ ] All functions have return types
-- [ ] Null/undefined handled properly
-- [ ] Array operations checked for undefined
-- [ ] Error handling properly typed
-- [ ] Generic constraints are specific
-- [ ] Third-party libraries have types
+- No `any` types
+- No `as` type assertions
+- No `@ts-ignore` or `@ts-expect-error`
+- No non-null assertion operator (the exclamation mark)
+- All function parameters have types
+- All functions have return types
+- Null/undefined handled properly
+- Array operations checked for undefined
+- Error handling properly typed
+- Generic constraints are specific
+- Third-party libraries have types
 
 ## Commands for Type Checking
 
