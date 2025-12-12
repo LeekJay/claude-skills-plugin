@@ -1,6 +1,6 @@
 ---
 name: smart-model-router
-description: Capability-first smart model router / 多模型路由器。触发场景：需要“选择/路由到哪个模型”或进行多模型编排与分发（模型路由、模型选择、多模型编排、智能派发、smart model routing、model router、model orchestrator、dispatch、choose best model）。在 Claude Opus/Sonnet/Haiku、GPT-5.2(Codex)、Gemini 之间做最优能力路由（前端/UI 最高优先 Gemini）。
+description: Capability-first smart model router. Trigger scenarios: need to "select/route to which model" or perform multi-model orchestration and dispatch (model routing, model selection, multi-model orchestration, smart dispatch, smart model routing, model router, model orchestrator, dispatch, choose best model). Optimal capability routing among Claude Opus/Sonnet/Haiku, GPT-5.2(Codex), Gemini (Frontend/UI highest priority Gemini).
 allowed-tools: Read, Grep, Glob, Bash, Task
 ---
 
@@ -16,60 +16,64 @@ This skill provides intelligent model selection and task routing across multiple
 - **GPT-5.2 (via Codex)**: Complex coding, multi-file refactoring, template generation, DEFAULT choice
 - **Gemini CLI**: Large codebase analysis, frontend design, global understanding
 
-## 触发测试（可选）
+## Trigger Testing (Optional)
 
-启用本技能后，可用这些提示语验证自动触发是否稳定：
+After enabling this skill, you can use these prompts to verify automatic triggering works:
 
-- “帮我选择最合适的模型来完成这个任务 / 用哪个模型更合适？”
-- “Route this task to the best model / choose the right model for this job.”
-- “这是一个前端/UI 设计或 React 组件任务，请优先用 Gemini。”
-- “需要多模型编排：先分析再执行，再告诉我为什么选这个模型。”
+- "Help me choose the most suitable model for this task / which model is better?"
+- "Route this task to the best model / choose the right model for this job."
+- "This is a frontend/UI design or React component task, please prioritize Gemini."
+- "Need multi-model orchestration: analyze first, then execute, then tell me why you chose this model."
 
-若未自动触发，可显式说“使用 smart-model-router”作为兜底。
+If not automatically triggered, you can explicitly say "use smart-model-router" as fallback.
 
 ## Architecture: Three-Layer System
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                      用户请求                                │
-└───────────────────────────┬─────────────────────────────────┘
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│         Layer 1: Haiku 决策层 (model-orchestrator)          │
-│   • 任务分类 • 模型选择 • 提示词优化                         │
-└───────────────────────────┬─────────────────────────────────┘
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│         Layer 2: 执行层 (model-executor)                    │
-│   • Codex (GPT-5.2) • Gemini • Claude 内部模型              │
-└───────────────────────────┬─────────────────────────────────┘
-                            ▼
-┌─────────────────────────────────────────────────────────────┐
-│         Layer 3: 输出优化层 (output-optimizer) ⭐ NEW       │
-│   • 对 Codex 精炼输出进行扩展和润色                         │
-│   • 添加上下文说明、改进建议、风险提示                       │
-│   • 使用 Haiku 进行轻量优化                                 │
-└───────────────────────────┬─────────────────────────────────┘
-                             ▼
-                       返回给用户
++-------------------------------------------------------------+
+|                      User Request                            |
++---------------------------+---------------------------------+
+                            |
+                            v
++-------------------------------------------------------------+
+|         Layer 1: Haiku Decision Layer (model-orchestrator)   |
+|   - Task classification - Model selection - Prompt optim     |
++---------------------------+---------------------------------+
+                            |
+                            v
++-------------------------------------------------------------+
+|         Layer 2: Execution Layer (model-executor)            |
+|   - Codex (GPT-5.2) - Gemini - Claude internal models        |
++---------------------------+---------------------------------+
+                            |
+                            v
++-------------------------------------------------------------+
+|         Layer 3: Output Optimization Layer (output-optimizer)|
+|   - Extend and polish concise Codex output                   |
+|   - Add context explanation, improvement suggestions, risks  |
+|   - Use Haiku for lightweight optimization                   |
++---------------------------+---------------------------------+
+                            |
+                            v
+                      Return to User
 ```
 
 ## Why Output Optimization?
 
-**Codex 输出特点：**
+**Codex Output Characteristics:**
 
-- 精炼、直接、技术性强
-- 缺少上下文解释
-- 没有改进建议和风险提示
-- 格式相对简单
+- Concise, direct, highly technical
+- Lacks context explanation
+- No improvement suggestions or risk warnings
+- Relatively simple formatting
 
-**优化后输出：**
+**Optimized Output:**
 
-- 保留核心技术内容
-- 添加清晰的结构和分节
-- 补充上下文说明和背景
-- 提供改进建议和潜在风险
-- 更适合团队协作和知识传承
+- Preserves core technical content
+- Adds clear structure and sections
+- Supplements context explanation and background
+- Provides improvement suggestions and potential risks
+- More suitable for team collaboration and knowledge sharing
 
 ## Model Profiles
 
@@ -79,13 +83,13 @@ This skill provides intelligent model selection and task routing across multiple
 | ----------------------- | ---------------------------- | ------------------------------------------------------ |
 | **Gemini CLI**          | Top-tier (UI + huge context) | Frontend/UI, very large context, whole-repo analysis   |
 | **Claude Opus 4.5**     | Highest reasoning            | Architecture, security-critical, high-stakes decisions |
-| **GPT-5.2 (via Codex)** | Top-tier coding              | Most coding/refactor/bugfix tasks (DEFAULT) ⭐         |
+| **GPT-5.2 (via Codex)** | Top-tier coding              | Most coding/refactor/bugfix tasks (DEFAULT)            |
 | **Claude Sonnet 4.5**   | Top-tier Claude features     | Claude-specific workflows, artifacts                   |
 | **Claude Haiku 4.5**    | Good, lightweight            | Simple/realtime tasks, light reviews, sub-agents       |
 
 ### Performance Benchmarks (reference, capability-first)
 
-> 以下基准为参考值，随模型更新可能变化；路由以能力优先规则为准。
+> The following benchmarks are reference values that may change with model updates; routing follows capability-first rules.
 
 | Capability         | Haiku        | GPT-5.2         | Gemini         | Sonnet                     | Opus                |
 | ------------------ | ------------ | --------------- | -------------- | -------------------------- | ------------------- |
@@ -110,27 +114,27 @@ GPT-5.2 (released Dec 11, 2025) is now the default for most tasks:
 
 ```
 Task Received
-    │
-    ├─ Is it frontend UI / design task?
-    │   └─ YES → Gemini CLI (highest priority)
-    │
-    ├─ Is context > 100K tokens OR many files?
-    │   └─ YES → Gemini CLI (1M+ context)
-    │
-    ├─ Is it architecture / security critical?
-    │   └─ YES → Opus (highest quality)
-    │
-    ├─ Requires Claude-specific features?
-    │   └─ YES → Sonnet
-    │
-    ├─ Is it code review / PR review?
-    │   ├─ Complex/critical review → GPT-5.2 (fallback Opus)
-    │   └─ Light/realtime review → Haiku
-    │
-    ├─ Is it simple + real-time required?
-    │   └─ YES → Haiku (fastest)
-    │
-    └─ Default → GPT-5.2 (capability-first default) ⭐
+    |
+    +- Is it frontend UI / design task?
+    |   +- YES -> Gemini CLI (highest priority)
+    |
+    +- Is context > 100K tokens OR many files?
+    |   +- YES -> Gemini CLI (1M+ context)
+    |
+    +- Is it architecture / security critical?
+    |   +- YES -> Opus (highest quality)
+    |
+    +- Requires Claude-specific features?
+    |   +- YES -> Sonnet
+    |
+    +- Is it code review / PR review?
+    |   +- Complex/critical review -> GPT-5.2 (fallback Opus)
+    |   +- Light/realtime review -> Haiku
+    |
+    +- Is it simple + real-time required?
+    |   +- YES -> Haiku (fastest)
+    |
+    +- Default -> GPT-5.2 (capability-first default)
 ```
 
 ### Detailed Routing Rules
@@ -152,7 +156,7 @@ Task Received
 - "Add type annotations to this file"
 - "Fix this TypeScript error"
 
-#### Route to GPT-5.2 (DEFAULT - Most Coding Tasks) ⭐
+#### Route to GPT-5.2 (DEFAULT - Most Coding Tasks)
 
 **GPT-5.2 is the recommended default for most coding tasks (capability-first).**
 
@@ -396,10 +400,10 @@ When user specifies model, skip routing and use requested model directly.
 
 If task fails with selected model:
 
-1. GPT-5.2 fails → Try Opus
-2. Haiku fails → Try GPT-5.2
-3. Gemini fails → Try GPT-5.2 with chunked context
-4. Sonnet fails → Try Opus
+1. GPT-5.2 fails -> Try Opus
+2. Haiku fails -> Try GPT-5.2
+3. Gemini fails -> Try GPT-5.2 with chunked context
+4. Sonnet fails -> Try Opus
 
 ## Integration with Other Skills
 
@@ -419,7 +423,7 @@ User: "Review this pull request for issues"
 
 Routing Decision:
 - Task type: Code review
-- Trigger: Code review (non-trivial) → GPT-5.2
+- Trigger: Code review (non-trivial) -> GPT-5.2
 - Confidence: High
 
 Action: Execute with GPT-5.2
@@ -434,7 +438,7 @@ User: "Help me understand how this legacy system works"
 Routing Decision:
 - Task type: Codebase analysis
 - Context size: >100K tokens
-- Trigger: Large context → Gemini
+- Trigger: Large context -> Gemini
 
 Action: Execute with Gemini CLI
 Result: Comprehensive analysis using 1M token context
@@ -448,7 +452,7 @@ User: "Implement user authentication with JWT"
 Routing Decision:
 - Task type: Feature implementation
 - Complexity: Medium-High
-- Trigger: Complex coding → GPT-5.2
+- Trigger: Complex coding -> GPT-5.2
 
 Action: Execute with GPT-5.2
 Result: Well-implemented feature output
@@ -462,7 +466,7 @@ User: "Generate REST API endpoints for Product model"
 Routing Decision:
 - Task type: Template generation
 - Pattern: Standard CRUD
-- Trigger: Template → GPT-5.2
+- Trigger: Template -> GPT-5.2
 
 Action: Execute with GPT-5.2
 Result: Clean boilerplate output
@@ -476,7 +480,7 @@ User: "Design the caching strategy for our microservices"
 Routing Decision:
 - Task type: Architecture design
 - Criticality: High
-- Trigger: Architecture decision → Opus
+- Trigger: Architecture decision -> Opus
 
 Action: Execute with Opus
 Result: Comprehensive architectural analysis
@@ -512,26 +516,26 @@ If a model consistently fails for a task type:
 ## Quick Reference Card
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│      Smart Model Router Quick Reference (Three-Layer v2.1)  │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  Layer 1 (Decision): Haiku analyzes and routes tasks        │
-│  Layer 2 (Execution): GPT-5.2/Gemini/Claude executes        │
-│  Layer 3 (Optimization): Haiku enhances output ⭐ NEW       │
-│                                                             │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  Haiku   → Code review, simple tasks, real-time, output opt │
-│  GPT-5.2 → Everything else (DEFAULT) ⭐                    │
-│  Gemini  → Large context (100K+), frontend UI              │
-│  Sonnet  → Claude-specific features only                   │
-│  Opus    → Architecture, security, critical decisions      │
-│                                                             │
-├─────────────────────────────────────────────────────────────┤
-│  Speed: Haiku > GPT-5.2 > Gemini ≈ Sonnet > Opus           │
-│  Quality: Opus > GPT-5.2 ≈ Sonnet > Gemini > Haiku         │
-├─────────────────────────────────────────────────────────────┤
-│  Output Flow: Codex (terse) → Haiku (polish) → User        │
-└─────────────────────────────────────────────────────────────┘
++-------------------------------------------------------------+
+|      Smart Model Router Quick Reference (Three-Layer v2.1)   |
++-------------------------------------------------------------+
+|                                                             |
+|  Layer 1 (Decision): Haiku analyzes and routes tasks        |
+|  Layer 2 (Execution): GPT-5.2/Gemini/Claude executes        |
+|  Layer 3 (Optimization): Haiku enhances output              |
+|                                                             |
++-------------------------------------------------------------+
+|                                                             |
+|  Haiku   -> Code review, simple tasks, real-time, output opt|
+|  GPT-5.2 -> Everything else (DEFAULT)                       |
+|  Gemini  -> Large context (100K+), frontend UI              |
+|  Sonnet  -> Claude-specific features only                   |
+|  Opus    -> Architecture, security, critical decisions      |
+|                                                             |
++-------------------------------------------------------------+
+|  Speed: Haiku > GPT-5.2 > Gemini = Sonnet > Opus            |
+|  Quality: Opus > GPT-5.2 = Sonnet > Gemini > Haiku          |
++-------------------------------------------------------------+
+|  Output Flow: Codex (terse) -> Haiku (polish) -> User       |
++-------------------------------------------------------------+
 ```
