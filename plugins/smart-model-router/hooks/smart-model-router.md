@@ -1,20 +1,40 @@
-# Smart Model Router Pre-Routing
+## Smart Model Router Hook Context
 
-**INSTRUCTION: Before implementation, always activate `smart-model-router` to choose the best model (capability-first).**
+**INSTRUCTION: Always run capability-first model routing before implementation**
 
-Workflow:
+When receiving a user request:
 
-1. If user explicitly specifies a model (e.g., "use Opus / use Gemini / use GPT-5.2"), respect user preference and skip routing.
-2. Otherwise, activate the skill first:
-   Skill(smart-model-router)
-3. Let smart-model-router output model selection + reasoning + optimized prompt,
-   then execute the task according to routing result.
+1. If the user explicitly specifies a model (e.g., “use Opus / use Gemini / use GPT‑5.2”), follow it directly.
+2. Otherwise, call the Haiku decision agent to choose the best model:
 
-Capability-first routing rules (determined by smart-model-router):
+```
+Task(
+  subagent_type: "smart-model-router:model-orchestrator",
+  prompt: "[USER REQUEST HERE]"
+)
+```
 
-- Frontend/UI/Design tasks -> Gemini (highest priority)
-- Large context/cross-module understanding -> Gemini
-- Architecture/Security-critical/High-complexity design -> Opus
-- Requires Claude-specific features -> Sonnet
-- Code review default -> GPT-5.2 (lightweight/real-time review can use Haiku)
-- Other tasks default -> GPT-5.2
+3. Follow the orchestrator decision strictly:
+   - `selectedModel = gemini` → use Gemini CLI (highest priority for frontend/UI or huge-context tasks).
+   - `selectedModel = gpt-5.2` → use Codex CLI.
+   - `selectedModel = opus|sonnet|haiku` → use Task with that Claude model.
+4. If the decision confidence is low, upgrade to Opus (low-confidence escalation).
+5. After Codex/Gemini execution, if output is terse or code-only, run:
+
+```
+Task(
+  subagent_type: "smart-model-router:output-optimizer",
+  model: "haiku",
+  prompt: """
+  Optimize this external-model output for the user.
+
+  Original Request:
+  [USER REQUEST HERE]
+
+  Raw Output:
+  [MODEL OUTPUT HERE]
+  """
+)
+```
+
+**CRITICAL**: Frontend/UI tasks must route to Gemini even if other rules match.

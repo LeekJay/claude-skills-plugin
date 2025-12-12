@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -NoProfile -Command \"[Console]::OutputEncoding=[System.Text.Encoding]::UTF8; Get-Content -Raw -Encoding utf8 '$env:USERPROFILE\\.claude\\hooks\\smart-model-router.md'\""
+            "command": "powershell -NoProfile -Command \"[Console]::OutputEncoding=[System.Text.Encoding]::UTF8; $p=Join-Path $env:CLAUDE_PLUGIN_ROOT 'hooks\\smart-model-router.md'; [System.IO.File]::ReadAllText($p,[System.Text.Encoding]::UTF8)\""
           }
         ]
       }
