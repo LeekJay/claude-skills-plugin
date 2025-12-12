@@ -7,7 +7,6 @@
     "email": "leekjay@foxmail.com"
   },
   "repository": "https://github.com/LeekJay/claude-skills-plugin",
-  "category": "workflow-optimization",
   "skills": [
     "./skills/smart-model-router/SKILL.md"
   ],
