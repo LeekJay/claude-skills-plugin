@@ -1,0 +1,34 @@
+{
+  "name": "smart-model-router",
+  "description": "Intelligent multi-model routing system with three-layer architecture: Haiku decision layer → execution layer (GPT-5.2/Codex, Gemini, Claude) → Haiku output optimization layer. Dynamically selects optimal AI models and enhances Codex's concise outputs with context, suggestions, and risk warnings. Routes capability-first for best outcomes.",
+  "version": "2.1.0",
+  "author": {
+    "name": "LeekJay",
+    "email": "leekjay@foxmail.com"
+  },
+  "repository": "https://github.com/LeekJay/claude-skills-plugin",
+  "category": "workflow-optimization",
+  "skills": [
+    "./skills/smart-model-router/SKILL.md"
+  ],
+  "agents": [
+    "./agents/model-orchestrator.md",
+    "./agents/model-executor.md",
+    "./agents/output-optimizer.md"
+  ],
+  "hooks": "./hooks/hooks.json",
+  "keywords": [
+    "model-routing",
+    "multi-model",
+    "orchestration",
+    "gpt-5.2",
+    "codex",
+    "gemini",
+    "haiku",
+    "sonnet",
+    "opus",
+    "smart-dispatch",
+    "output-optimizer",
+    "three-layer-architecture"
+  ]
+}

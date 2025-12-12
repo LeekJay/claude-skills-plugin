@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo [smart-model-router hook] 在开始处理用户请求前，请先评估并激活 smart-model-router 做能力优先模型路由（前端/UI 任务最高优先 Gemini），再按路由结果执行。"
+          }
+        ]
+      }
+    ]
+  }
+}

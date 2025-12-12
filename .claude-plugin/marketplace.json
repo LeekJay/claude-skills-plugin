@@ -83,6 +83,12 @@
       "source": "./plugins/tech-stack-advisor",
       "description": "Intelligent tech stack advisor providing technology selection recommendations through online research, comparative analysis, quantitative metrics, and implementation guidance. Use when making technology decisions for frontend, backend, databases, or tools.",
       "category": "agent"
+    },
+    {
+      "name": "smart-model-router",
+      "source": "./plugins/smart-model-router",
+      "description": "Intelligent multi-model routing system with three-layer architecture: Haiku decision layer → execution layer (GPT-5.2/Codex, Gemini, Claude) → Haiku output optimization layer. Routes tasks to optimal AI models based on capability-first matching. Use when needing to choose/route to the best model, or for multi-model orchestration.",
+      "category": "workflow-optimization"
     }
   ]
 }
